@@ -1,0 +1,143 @@
+/* /app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  overscroll-behavior-y: contain;
+}
+
+/* Skip to main content link - Accessibility */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: hsl(0 0% 9%);
+  color: hsl(0 0% 98%);
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 0 0 4px 0;
+  transition: top 0.2s ease-in-out;
+}
+
+.skip-to-main:focus {
+  top: 0;
+  outline: 2px solid hsl(231 68% 65%);
+  outline-offset: 2px;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --star: 48 96% 53%;
+    /* Focus ring color for accessibility */
+    --ring: 231 68% 65%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  body {
+    @apply font-sans;
+  }
+
+  button {
+    @apply transition-transform duration-150 active:scale-[0.97];
+  }
+
+  /* Enhanced focus styles for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Remove default outline when using focus-visible */
+  a:focus:not(:focus-visible),
+  button:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.gradient-border-button {
+  @apply relative inline-flex items-center justify-center overflow-hidden rounded-full p-0.5;
+  background: linear-gradient(to right, #4ade80, #2563eb);
+  @apply border-2 !important;
+}
+
+.gradient-border-button span {
+  @apply relative px-8 py-3 transition-all ease-in duration-75 bg-white rounded-full w-full text-[15px] font-medium;
+}
+
+.gradient-border-button:hover span {
+  @apply bg-transparent text-white;
+}
+
+/* Add new base button styles */
+.base-button {
+  @apply px-8 py-3 text-[15px] font-medium rounded-full;
+}
+
+/* Masonry Grid Styles */
+.my-masonry-grid {
+  display: flex;
+  margin-left: -16px; /* gutter size offset */
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 16px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Simplified button styles */
+[class*="border-black"],  /* Catch all elements with border-black in their classes */
+.border.border-black,     /* Direct border-black elements */
+button[class*="border-black"],  /* Buttons with border-black */
+a[class*="border-black"] {      /* Links with border-black */
+  @apply border-2 !important;
+}
+
+/* Ensure rounded buttons maintain consistent styling */
+[class*="rounded-full"][class*="border-black"] {
+  @apply border-2 !important;
+}
+
+/* Remove this class since we're handling text size in the component */
+/* .accordion-content {
+  @apply text-xl leading-relaxed;
+} */
+
